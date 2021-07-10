@@ -5,10 +5,11 @@ import mapChip1 from "../images/map01.png";
 import mapChip2 from "../images/map02.png";
 import mapChip3 from "../images/map03.png";
 
+import * as Actions from "../store/ducks/map/actions";
 import {
-  GENERATE_INITIAL_MAP,
-  GENERATE_RAMDOM_MAP
-} from "../container/actions/map";
+  getOnceMapChipSize,
+  getRandomArray
+} from "../store/ducks/map/selecors";
 
 const checkMapChipType = (number) => {
   switch (number) {
@@ -25,22 +26,26 @@ const checkMapChipType = (number) => {
   }
 };
 
-const Map = ({ state, dispatch }) => {
+const Map = ({ selector, dispatch }) => {
   const isFirstRender = useRef(false);
   useEffect(() => {
-    dispatch({ type: GENERATE_INITIAL_MAP });
-    dispatch({ type: GENERATE_RAMDOM_MAP });
+    dispatch(Actions.generateInitialMap());
+    dispatch(Actions.generateRandomMap());
+    dispatch(Actions.changeOnceMapChip_FROM_XY(8, 6, 0));
     isFirstRender.current = true;
   }, []);
+
+  const onceMapChipSize = getOnceMapChipSize(selector);
+  const randomArray = getRandomArray(selector);
   const sprites = () => {
     if (isFirstRender.current) {
-      return state.map.randomArray.map((value, index) => {
+      return randomArray.map((value, index) => {
         const sprites = value.map((mapValue, mapIndex) => {
           return (
             <Sprite
               image={checkMapChipType(mapValue)}
-              x={mapIndex * state.map.onceMapChipSize}
-              y={index * state.map.onceMapChipSize}
+              x={mapIndex * onceMapChipSize}
+              y={index * onceMapChipSize}
             />
           );
         });

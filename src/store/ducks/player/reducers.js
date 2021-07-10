@@ -1,15 +1,9 @@
-import {
-  PLAYER_MOVE_LEFT,
-  PLAYER_MOVE_RIGHT,
-  PLAYER_MOVE_TOP,
-  PLAYER_MOVE_BOTTOM
-} from "../actions/playerMove";
+import * as Actions from "./actions";
+import initialState from "../../initialState";
 
-import initialState from "../store/initialState";
-
-const playerReducer = (state = initialState, action) => {
+export const playerReducers = (state = initialState.player, action) => {
   switch (action.type) {
-    case PLAYER_MOVE_LEFT:
+    case Actions.PLAYER_MOVE_LEFT:
       return {
         ...state,
         ...{
@@ -19,7 +13,7 @@ const playerReducer = (state = initialState, action) => {
           }
         }
       };
-    case PLAYER_MOVE_RIGHT:
+    case Actions.PLAYER_MOVE_RIGHT:
       return {
         ...state,
         ...{
@@ -29,7 +23,7 @@ const playerReducer = (state = initialState, action) => {
           }
         }
       };
-    case PLAYER_MOVE_TOP:
+    case Actions.PLAYER_MOVE_TOP:
       return {
         ...state,
         ...{
@@ -39,7 +33,7 @@ const playerReducer = (state = initialState, action) => {
           }
         }
       };
-    case PLAYER_MOVE_BOTTOM:
+    case Actions.PLAYER_MOVE_BOTTOM:
       return {
         ...state,
         ...{
@@ -53,5 +47,3 @@ const playerReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default playerReducer;

@@ -1,7 +1,7 @@
-import Actions from "../actions/map";
-import initialState from "../store/initialState";
+import * as Actions from "./actions";
+import initialState from "../../initialState";
 
-const mapReducer = (state = initialState, action) => {
+export const mapReducers = (state = initialState.map, action) => {
   switch (action.type) {
     case Actions.GENERATE_INITIAL_MAP:
       const initialArray = Array.from(Array(state.columnMapChipCount), () =>
@@ -30,9 +30,13 @@ const mapReducer = (state = initialState, action) => {
         }
       };
     case Actions.CHANGE_ONCE_MAPCHIP_FROM_XY:
+      const changedRandomArray = Array.from(state.randomArray);
+      changedRandomArray[action.payload.y][action.payload.x] =
+        action.payload.mapChipId;
+      console.log(changedRandomArray[action.payload.y][action.payload.x]);
+      //console.log(state.randomArray[action.payload.y][action.payload.x]);
       return state;
     default:
       return state;
   }
 };
-export default mapReducer;

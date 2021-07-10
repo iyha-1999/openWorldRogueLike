@@ -1,3 +1,12 @@
+const gameLoop = {
+  keyInput: false,
+  playerAct: false,
+  enemyRequestAi: false,
+  playerMove: false,
+  enemyActBegin: false,
+  enemyAct: false,
+  turnEnd: false
+};
 const stage = {
   stage: {
     width: 800,
@@ -17,8 +26,8 @@ const map = {
 const player = {
   player: {
     position: {
-      x: 0,
-      y: 0
+      x: 8 * 48,
+      y: 6 * 48
     }
   }
 };
