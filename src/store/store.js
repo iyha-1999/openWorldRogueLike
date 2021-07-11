@@ -1,4 +1,5 @@
-import { createStore as reduxCreateStore, combineReducers } from "redux";
+import { createStore as reduxCreateStore, combineReducers,applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
 import { playerReducers } from "./ducks/player/reducers";
 import { mapReducers } from "./ducks/map/reducers";
@@ -10,6 +11,7 @@ export default function createStore() {
       player: playerReducers,
       map: mapReducers,
       stage: stageReducers
-    })
+    }),
+    applyMiddleware(thunk)
   );
 }

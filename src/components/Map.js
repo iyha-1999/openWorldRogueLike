@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Sprite, Container } from "@inlet/react-pixi";
+import * as Operations from "../store/ducks/map/operations";
+
 import mapChip0 from "../images/map0.png";
 import mapChip1 from "../images/map01.png";
 import mapChip2 from "../images/map02.png";
@@ -29,9 +31,9 @@ const checkMapChipType = (number) => {
 const Map = ({ selector, dispatch }) => {
   const isFirstRender = useRef(false);
   useEffect(() => {
-    dispatch(Actions.generateInitialMap());
-    dispatch(Actions.generateRandomMap());
-    dispatch(Actions.changeOnceMapChip_FROM_XY(8, 6, 0));
+    dispatch(Operations.generateInitialMap());
+    dispatch(Operations.generateRandomMap());
+    dispatch(Operations.changeOnceMapChipFromXY());
     isFirstRender.current = true;
   }, []);
 
@@ -40,11 +42,11 @@ const Map = ({ selector, dispatch }) => {
   const sprites = () => {
     if (isFirstRender.current) {
       return randomArray.map((value, index) => {
-        const sprites = value.map((mapValue, mapIndex) => {
+        const sprites = value.map((secondValue, secondMapIndex) => {
           return (
             <Sprite
-              image={checkMapChipType(mapValue)}
-              x={mapIndex * onceMapChipSize}
+              image={checkMapChipType(secondValue)}
+              x={secondMapIndex * onceMapChipSize}
               y={index * onceMapChipSize}
             />
           );
