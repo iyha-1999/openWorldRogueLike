@@ -10,3 +10,7 @@ export const getRandomArray = createSelector(
   [mapSelector],
   (state) => state.randomArray
 );
+export const getPlayerInitPosition = createSelector(
+  [mapSelector],
+  (state) => state.playerInitPosition
+);

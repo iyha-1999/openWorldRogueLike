@@ -1,12 +1,11 @@
 import { Sprite, Container } from "@inlet/react-pixi";
-import player from "../images/player.png";
-import { getPlayerPosition } from "../store/ducks/player/selecors";
+import usePlayer from '../hooks/usePlayer';
 
-const Player = ({ selector }) => {
-  const playerPosition = getPlayerPosition(selector);
+const Player = () => {
+  const { texture, playerPosition } = usePlayer();
   return (
     <Container>
-      <Sprite image={player} x={playerPosition.x} y={playerPosition.y} />
+      <Sprite image={texture} x={playerPosition.x} y={playerPosition.y} />
     </Container>
   );
 };

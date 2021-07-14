@@ -1,11 +1,11 @@
 //リロードするとランダムでマップが生成される
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector,ReactReduxContext } from "react-redux";
 import { Stage } from "@inlet/react-pixi";
 import "./styles.css";
-
+import GameLoop from "./components/GameLoop";
 import Player from "./components/Player";
 import Map from "./components/Map";
-import GameLoop from "./components/GameLoop";
+import ContextBridge from "./components/ContextBridge";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -13,10 +13,16 @@ export default function App() {
   return (
     <>
       <div className="App">
-        <Stage width={selector.stage.width} height={selector.stage.height}>
-          <Map selector={selector} dispatch={dispatch} />
-          <Player selector={selector} />
-        </Stage>
+      { /*renderPropで子コンポーネントを渡し、react-pixiコンポーネントにコンテキストを渡す*/}
+      <ContextBridge
+        Context={ReactReduxContext}
+        render={children => (
+          <Stage width={selector.stage.width} height={selector.stage.height}>{children}</Stage>
+        )}
+      >
+        <Map selector={selector} dispatch={dispatch} />
+        <Player selector={selector} />
+      </ContextBridge>
       </div>
       <GameLoop />
     </>

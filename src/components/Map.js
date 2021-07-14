@@ -1,52 +1,16 @@
-import { useEffect, useRef } from "react";
 import { Sprite, Container } from "@inlet/react-pixi";
-import * as Operations from "../store/ducks/map/operations";
+import useMap from '../hooks/useMap';
 
-import mapChip0 from "../images/map0.png";
-import mapChip1 from "../images/map01.png";
-import mapChip2 from "../images/map02.png";
-import mapChip3 from "../images/map03.png";
-
-import * as Actions from "../store/ducks/map/actions";
-import {
-  getOnceMapChipSize,
-  getRandomArray
-} from "../store/ducks/map/selecors";
-
-const checkMapChipType = (number) => {
-  switch (number) {
-    case 0:
-      return mapChip0;
-    case 1:
-      return mapChip1;
-    case 2:
-      return mapChip2;
-    case 3:
-      return mapChip3;
-    default:
-      return mapChip0;
-  }
-};
-
-const Map = ({ selector, dispatch }) => {
-  const isFirstRender = useRef(false);
-  useEffect(() => {
-    dispatch(Operations.generateInitialMap());
-    dispatch(Operations.generateRandomMap());
-    dispatch(Operations.changeOnceMapChipFromXY());
-    isFirstRender.current = true;
-  }, []);
-
-  const onceMapChipSize = getOnceMapChipSize(selector);
-  const randomArray = getRandomArray(selector);
+const Map = () => {
+  const { onceMapChipSize, randomArray,isFirstRender,checkMapChipType } = useMap();
   const sprites = () => {
     if (isFirstRender.current) {
       return randomArray.map((value, index) => {
-        const sprites = value.map((secondValue, secondMapIndex) => {
+        const sprites = value.map((secondValue, secondIndex) => {
           return (
             <Sprite
               image={checkMapChipType(secondValue)}
-              x={secondMapIndex * onceMapChipSize}
+              x={secondIndex * onceMapChipSize}
               y={index * onceMapChipSize}
             />
           );

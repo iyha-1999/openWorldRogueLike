@@ -18,9 +18,13 @@ const map = {
     onceMapChipSize: 48,
     columnMapChipCount: 13,
     rowMapTipCount: 17,
-    initialArray: undefined,
-    randomArray: undefined,
-    mapchipSrcs: undefined
+    initialArray: [[0]],
+    randomArray: [[0]],
+    playerInitPosition: {
+      x: 8,
+      y: 6
+    },
+    seed:1
   }
 };
 const player = {
