@@ -13,6 +13,11 @@ export const mapReducers = (state = initialState.map, action) => {
         ...state,
         ...action.payload.randomArray
       };
+    case Actions.SET_TEXTURES:
+        return {
+          ...state,
+          ...action.payload.textures
+        };
     default:
       return state;
   }

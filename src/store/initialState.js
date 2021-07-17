@@ -5,13 +5,13 @@ const gameLoop = {
   playerMove: false,
   enemyActBegin: false,
   enemyAct: false,
-  turnEnd: false
+  turnEnd: false,
 };
 const stage = {
   stage: {
     width: 800,
-    height: 600
-  }
+    height: 600,
+  },
 };
 const map = {
   map: {
@@ -20,25 +20,39 @@ const map = {
     rowMapTipCount: 17,
     initialArray: [[0]],
     randomArray: [[0]],
+    chunk: [{ x: 0, y: 0, map: [[0]] }],
     playerInitPosition: {
       x: 8,
-      y: 6
+      y: 6,
     },
-    seed:1
-  }
+    textures: [],
+    seed: 1,
+  },
 };
 const player = {
   player: {
     position: {
       x: 8 * 48,
-      y: 6 * 48
-    }
-  }
+      y: 6 * 48,
+    },
+    textures: [],
+    animationTypes: {
+      waitTop: [],
+      waitBottom: [],
+      waitLeft: [],
+      waitRight: [],
+      top: [],
+      bottom: [],
+      left: [],
+      right: [],
+    },
+    currentAnimationType: [],
+  },
 };
 
 const initialState = {
   ...player,
   ...map,
-  ...stage
+  ...stage,
 };
 export default initialState;

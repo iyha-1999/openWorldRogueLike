@@ -1,24 +1,29 @@
-import { Sprite, Container } from "@inlet/react-pixi";
+import React from 'react';
 import useMap from '../hooks/useMap';
+import { Container, Sprite } from '@inlet/react-pixi';
 
 const Map = () => {
-  const { onceMapChipSize, randomArray,isFirstRender,checkMapChipType } = useMap();
-  const sprites = () => {
-    if (isFirstRender.current) {
-      return randomArray.map((value, index) => {
+  const { onceMapChipSize,randomArray,textures } = useMap();
+
+  if (textures.length === 0) {
+    return null;
+  }
+
+  return (
+    <Container>
+      {randomArray.map((value, index) => {
         const sprites = value.map((secondValue, secondIndex) => {
           return (
             <Sprite
-              image={checkMapChipType(secondValue)}
+              texture={textures[secondValue]}
               x={secondIndex * onceMapChipSize}
               y={index * onceMapChipSize}
             />
           );
         });
         return [...sprites];
-      });
-    }
-  };
-  return <Container>{sprites()}</Container>;
+      }) }
+    </Container>
+  );
 };
 export default Map;

@@ -83,7 +83,7 @@
     },
     "meta": {
         "app": "https://github.com/Ensighten/spritesmith",
-        "image": "sprite.png",
+        "image": "map.png",
         "format": "RGBA8888",
         "size": {
             "w": 100,

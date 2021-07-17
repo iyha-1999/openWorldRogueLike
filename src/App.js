@@ -20,8 +20,8 @@ export default function App() {
           <Stage width={selector.stage.width} height={selector.stage.height}>{children}</Stage>
         )}
       >
-        <Map selector={selector} dispatch={dispatch} />
-        <Player selector={selector} />
+        <Map/>
+        <Player/>
       </ContextBridge>
       </div>
       <GameLoop />

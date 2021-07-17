@@ -9,9 +9,9 @@ export const playerReducers = (state = initialState.player, action) => {
         ...{
           position: {
             x: state.position.x - initialState.map.onceMapChipSize,
-            y: state.position.y
-          }
-        }
+            y: state.position.y,
+          },
+        },
       };
     case Actions.PLAYER_MOVE_RIGHT:
       return {
@@ -19,9 +19,9 @@ export const playerReducers = (state = initialState.player, action) => {
         ...{
           position: {
             x: state.position.x + initialState.map.onceMapChipSize,
-            y: state.position.y
-          }
-        }
+            y: state.position.y,
+          },
+        },
       };
     case Actions.PLAYER_MOVE_TOP:
       return {
@@ -29,9 +29,9 @@ export const playerReducers = (state = initialState.player, action) => {
         ...{
           position: {
             x: state.position.x,
-            y: state.position.y - initialState.map.onceMapChipSize
-          }
-        }
+            y: state.position.y - initialState.map.onceMapChipSize,
+          },
+        },
       };
     case Actions.PLAYER_MOVE_BOTTOM:
       return {
@@ -39,9 +39,24 @@ export const playerReducers = (state = initialState.player, action) => {
         ...{
           position: {
             x: state.position.x,
-            y: state.position.y + initialState.map.onceMapChipSize
-          }
-        }
+            y: state.position.y + initialState.map.onceMapChipSize,
+          },
+        },
+      };
+    case Actions.SET_PLAYER_TEXTURES:
+      return {
+        ...state,
+        ...action.payload.textures,
+      };
+    case Actions.SET_PLAYER_ANIMATION_TYPES:
+      return {
+        ...state,
+        ...action.payload.animationTypes,
+      };
+    case Actions.SET_PLAYER_CURRENT_ANIMATION_TYPE:
+      return {
+        ...state,
+        ...action.payload.currentAnimationType,
       };
     default:
       return state;

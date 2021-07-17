@@ -16,3 +16,12 @@ export const setRandomMap = (randomArray) => {
     }
   };
 };
+export const SET_TEXTURES = "SET_TEXTURE";
+export const setTextures = (textures) => {
+  return {
+    type: SET_TEXTURES,
+    payload: {
+      textures
+    }
+  };
+};

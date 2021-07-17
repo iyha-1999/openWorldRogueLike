@@ -1,11 +1,22 @@
-import { Sprite, Container } from "@inlet/react-pixi";
-import usePlayer from '../hooks/usePlayer';
+import { AnimatedSprite, Container } from "@inlet/react-pixi";
+import usePlayer from "../hooks/usePlayer";
 
 const Player = () => {
-  const { texture, playerPosition } = usePlayer();
+  const { playerPosition, currentAnimationType } = usePlayer();
+  if (currentAnimationType.length === 0) {
+    return null;
+  }
   return (
     <Container>
-      <Sprite image={texture} x={playerPosition.x} y={playerPosition.y} />
+      <AnimatedSprite
+        animationSpeed={0.1}
+        isPlaying
+        textures={currentAnimationType}
+        anchor={(0, 0)}
+        scale={1}
+        x={playerPosition.x}
+        y={playerPosition.y}
+      />
     </Container>
   );
 };

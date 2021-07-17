@@ -14,3 +14,11 @@ export const getPlayerInitPosition = createSelector(
   [mapSelector],
   (state) => state.playerInitPosition
 );
+export const getTextures = createSelector(
+  [mapSelector],
+  (state) => state.textures
+);
+export const getSeed = createSelector(
+  [mapSelector],
+  (state) => state.seed
+);
