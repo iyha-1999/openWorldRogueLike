@@ -1,16 +1,22 @@
 import * as Actions from "./actions";
 
-export const setPlayerTextures = (textures) => {
+export const setPlayerTextures = (Loader, Texture, spriteSheet) => {
   return (dispatch) => {
-    dispatch(
-      Actions.setPlayerTextures({
-        textures,
-      })
-    );
+    const loader = new Loader();
+    loader.add(spriteSheet).load((_, resource) => {
+      const resourceFrames = resource[spriteSheet].data.frames;
+      const textures = Object.keys(resourceFrames).map((frame) =>
+        Texture.from(frame)
+      );
+      dispatch(
+        Actions.setPlayerTextures({
+          textures,
+        })
+      );
+    });
   };
 };
 export const setPlayerAnimationsTypes = (textures, animationTypes) => {
-  const typeKeys = Object.keys(animationTypes);
   const copyAnimationTypes = { ...animationTypes };
   textures.forEach((texture) => {
     const textureId = texture.textureCacheIds[0];
@@ -30,7 +36,6 @@ export const setPlayerAnimationsTypes = (textures, animationTypes) => {
 };
 export const setPlayerCurrentAnimationType = (animationType) => {
   const currentAnimationType = animationType;
-  console.log(currentAnimationType);
   return (dispatch) => {
     dispatch(
       Actions.setPlayerCurrentAnimationType({
@@ -39,3 +44,16 @@ export const setPlayerCurrentAnimationType = (animationType) => {
     );
   };
 };
+// export const setPlayerInitialAnimationType = (
+//   animationTypes,
+//   initialAnimationType
+// ) => {
+//   const initialAnimationType = animationTypes[0];
+//   return (dispatch) => {
+//     dispatch(
+//       Actions.setPlayerInitialAnimationType({
+//         initialAnimationType,
+//       })
+//     );
+//   };
+// };

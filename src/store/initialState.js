@@ -36,6 +36,7 @@ const player = {
       y: 6 * 48,
     },
     textures: [],
+    initialAnimationTypes: "waitTop",
     animationTypes: {
       waitTop: [],
       waitBottom: [],
@@ -49,10 +50,28 @@ const player = {
     currentAnimationType: [],
   },
 };
+const userInput = {
+  userInput: {
+    disabled: {
+      all: false,
+      w: false,
+      s: false,
+      a: false,
+      d: false,
+    },
+    pressed: {
+      w: false,
+      s: false,
+      a: false,
+      d: false,
+    },
+  },
+};
 
 const initialState = {
   ...player,
   ...map,
   ...stage,
+  ...userInput,
 };
 export default initialState;
