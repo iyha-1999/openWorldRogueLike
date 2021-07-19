@@ -44,16 +44,12 @@ export const setPlayerCurrentAnimationType = (animationType) => {
     );
   };
 };
-// export const setPlayerInitialAnimationType = (
-//   animationTypes,
-//   initialAnimationType
-// ) => {
-//   const initialAnimationType = animationTypes[0];
-//   return (dispatch) => {
-//     dispatch(
-//       Actions.setPlayerInitialAnimationType({
-//         initialAnimationType,
-//       })
-//     );
-//   };
-// };
+export const setAnimationPlaying = (animationPlaying) => {
+  return (dispatch) => {
+    dispatch(
+      Actions.setAnimationPlaying({
+        animationPlaying,
+      })
+    );
+  };
+};

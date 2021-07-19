@@ -5,6 +5,7 @@ import "./styles.css";
 import UserInput from "./components/UserInput";
 import Player from "./components/Player";
 import Map from "./components/Map";
+import GameLoop from "./components/GameLoop";
 import ContextBridge from "./components/ContextBridge";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Player />
         </ContextBridge>
       </div>
+      <GameLoop />
       <UserInput />
     </>
   );

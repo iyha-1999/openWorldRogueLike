@@ -4,12 +4,14 @@ import {
   setPlayerTextures,
   setPlayerAnimationsTypes,
   setPlayerCurrentAnimationType,
+  setAnimationPlaying,
 } from "../store/ducks/player/operations";
 import {
   getPlayerPosition,
   getPlayerTextures,
   getAnimationTypes,
   getCurrentAnimationType,
+  getAnimationPlaying,
 } from "../store/ducks/player/selecors";
 
 import { Texture, Loader } from "pixi.js";
@@ -22,6 +24,7 @@ const usePlayer = () => {
   const animationTypes = getAnimationTypes(selector);
   const currentAnimationType = getCurrentAnimationType(selector);
   const textures = getPlayerTextures(selector);
+  const animationPlaying = getAnimationPlaying(selector);
 
   const spriteSheet = `${process.env.PUBLIC_URL}/assets/sprite/player/player.json`;
 
@@ -31,13 +34,15 @@ const usePlayer = () => {
 
   useEffect(() => {
     dispatch(setPlayerAnimationsTypes(textures, animationTypes));
-    dispatch(setPlayerCurrentAnimationType(animationTypes.waitBottom));
+    dispatch(setPlayerCurrentAnimationType(animationTypes.left));
+    dispatch(setAnimationPlaying(true));
   }, [textures]);
 
   return {
     textures,
     playerPosition,
     currentAnimationType,
+    animationPlaying,
   };
 };
 export default usePlayer;

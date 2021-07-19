@@ -18,3 +18,7 @@ export const getCurrentAnimationType = createSelector(
   [playerSelector],
   (state) => state.currentAnimationType
 );
+export const getAnimationPlaying = createSelector(
+  [playerSelector],
+  (state) => state.animationPlaying
+);

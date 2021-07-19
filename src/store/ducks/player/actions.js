@@ -50,3 +50,12 @@ export const setPlayerCurrentAnimationType = (currentAnimationType) => {
     },
   };
 };
+export const SET_ANIMATION_PLAYING = "SET_ANIMATION_PLAYING";
+export const setAnimationPlaying = (animationPlaying) => {
+  return {
+    type: SET_ANIMATION_PLAYING,
+    payload: {
+      animationPlaying,
+    },
+  };
+};

@@ -1,8 +1,9 @@
 import { AnimatedSprite, Container } from "@inlet/react-pixi";
 import usePlayer from "../hooks/usePlayer";
-
 const Player = () => {
-  const { playerPosition, currentAnimationType } = usePlayer();
+  const { playerPosition, currentAnimationType, animationPlaying } =
+    usePlayer();
+
   if (currentAnimationType.length === 0) {
     return null;
   }
@@ -10,7 +11,7 @@ const Player = () => {
     <Container>
       <AnimatedSprite
         animationSpeed={0.1}
-        isPlaying
+        isPlaying={animationPlaying}
         textures={currentAnimationType}
         anchor={(0, 0)}
         scale={1}

@@ -58,6 +58,11 @@ export const playerReducers = (state = initialState.player, action) => {
         ...state,
         ...action.payload.currentAnimationType,
       };
+    case Actions.SET_ANIMATION_PLAYING:
+      return {
+        ...state,
+        ...action.payload.animationPlaying,
+      };
     default:
       return state;
   }

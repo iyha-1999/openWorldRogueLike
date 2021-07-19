@@ -48,6 +48,7 @@ const player = {
       right: [],
     },
     currentAnimationType: [],
+    animationPlaying: false,
   },
 };
 const userInput = {
