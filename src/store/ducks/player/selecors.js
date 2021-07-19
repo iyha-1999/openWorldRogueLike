@@ -14,6 +14,10 @@ export const getAnimationTypes = createSelector(
   [playerSelector],
   (state) => state.animationTypes
 );
+export const getInitialAnimationTypes = createSelector(
+  [playerSelector],
+  (state) => state.initialAnimationTypes
+);
 export const getCurrentAnimationType = createSelector(
   [playerSelector],
   (state) => state.currentAnimationType
