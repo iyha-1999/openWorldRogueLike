@@ -8,44 +8,35 @@ import {
 const useGameLoop = () => {
   const selector = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const changePlayerSptiteAnimation = (animationType) => {
+    dispatch(setAnimationPlaying(false));
+    dispatch(setPlayerCurrentAnimationType(animationType));
+    dispatch(setAnimationPlaying(true));
+  };
+
   useEffect(() => {
-    if (selector.userInput.pressed.w) {
-      dispatch(setAnimationPlaying(false));
-      dispatch(
-        setPlayerCurrentAnimationType(selector.player.animationTypes.top)
-      );
-      dispatch(setAnimationPlaying(true));
-    }
+    selector.userInput.pressed.w
+      ? changePlayerSptiteAnimation(selector.player.animationTypes.top)
+      : changePlayerSptiteAnimation(selector.player.animationTypes.waitTop);
   }, [selector.userInput.pressed.w]);
 
   useEffect(() => {
-    if (selector.userInput.pressed.s) {
-      dispatch(setAnimationPlaying(false));
-      dispatch(
-        setPlayerCurrentAnimationType(selector.player.animationTypes.bottom)
-      );
-      dispatch(setAnimationPlaying(true));
-    }
+    selector.userInput.pressed.s
+      ? changePlayerSptiteAnimation(selector.player.animationTypes.bottom)
+      : changePlayerSptiteAnimation(selector.player.animationTypes.waitBottom);
   }, [selector.userInput.pressed.s]);
 
   useEffect(() => {
-    if (selector.userInput.pressed.a) {
-      dispatch(setAnimationPlaying(false));
-      dispatch(
-        setPlayerCurrentAnimationType(selector.player.animationTypes.left)
-      );
-      dispatch(setAnimationPlaying(true));
-    }
+    selector.userInput.pressed.a
+      ? changePlayerSptiteAnimation(selector.player.animationTypes.left)
+      : changePlayerSptiteAnimation(selector.player.animationTypes.waitLeft);
   }, [selector.userInput.pressed.a]);
 
   useEffect(() => {
-    if (selector.userInput.pressed.d) {
-      dispatch(setAnimationPlaying(false));
-      dispatch(
-        setPlayerCurrentAnimationType(selector.player.animationTypes.right)
-      );
-      dispatch(setAnimationPlaying(true));
-    }
+    selector.userInput.pressed.d
+      ? changePlayerSptiteAnimation(selector.player.animationTypes.right)
+      : changePlayerSptiteAnimation(selector.player.animationTypes.waitRight);
   }, [selector.userInput.pressed.d]);
 };
 

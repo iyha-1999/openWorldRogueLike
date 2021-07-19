@@ -59,12 +59,14 @@ const userInput = {
       s: false,
       a: false,
       d: false,
+      Enter: false,
     },
     pressed: {
       w: false,
       s: false,
       a: false,
       d: false,
+      Enter: false,
     },
   },
 };

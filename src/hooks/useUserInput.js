@@ -17,9 +17,11 @@ const useUserInput = () => {
   const inputPressed = getUserInputPressed(selector);
 
   const keybordDownEvent = useCallback((event) => {
+    if (inputDisabled.all || inputDisabled[event.key]) return;
     dispatch(userPressedKey(inputPressed, event.key));
   }, []);
   const keybordUpEvent = useCallback((event) => {
+    if (inputDisabled.all) return;
     dispatch(userReleasedKey(inputPressed, event.key));
   }, []);
   return {

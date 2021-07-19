@@ -2,7 +2,7 @@ import * as Actions from "./actions";
 
 export const userPressedKey = (inputPressed, key) => {
   const pressed = { ...inputPressed };
-  pressed[key] = true;
+  if (pressed[key] != undefined) pressed[key] = true;
   return (dispatch) => {
     dispatch(
       Actions.setUserInputPlessed({
@@ -13,7 +13,7 @@ export const userPressedKey = (inputPressed, key) => {
 };
 export const userReleasedKey = (inputPressed, key) => {
   const pressed = { ...inputPressed };
-  pressed[key] = false;
+  if (pressed[key] != undefined) pressed[key] = false;
   return (dispatch) => {
     dispatch(
       Actions.setUserInputPlessed({
