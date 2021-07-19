@@ -63,6 +63,11 @@ export const playerReducers = (state = initialState.player, action) => {
         ...state,
         ...action.payload.animationPlaying,
       };
+    case Actions.SET_CURRENT_DIRECTION_TYPE:
+      return {
+        ...state,
+        ...action.payload.currentDirectionType,
+      };
     default:
       return state;
   }

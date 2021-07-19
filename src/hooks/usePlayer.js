@@ -13,6 +13,7 @@ import {
   getCurrentAnimationType,
   getAnimationPlaying,
   getInitialAnimationTypes,
+  getDirectionTypes,
 } from "../store/ducks/player/selecors";
 
 import { Texture, Loader } from "pixi.js";
@@ -27,6 +28,7 @@ const usePlayer = () => {
   const textures = getPlayerTextures(selector);
   const animationPlaying = getAnimationPlaying(selector);
   const initialAnimationTypes = getInitialAnimationTypes(selector);
+  const directionTypes = getDirectionTypes(selector);
 
   const spriteSheet = `${process.env.PUBLIC_URL}/assets/sprite/player/player.json`;
 

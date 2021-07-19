@@ -36,7 +36,13 @@ const player = {
       y: 6 * 48,
     },
     textures: [],
-    initialAnimationTypes: "waitTop",
+    directionTypes: {
+      top: "top",
+      bottom: "bottom",
+      left: "left",
+      right: "right",
+    },
+    currentDirectionType: "top",
     animationTypes: {
       waitTop: [],
       waitBottom: [],
@@ -47,6 +53,7 @@ const player = {
       left: [],
       right: [],
     },
+    initialAnimationTypes: "waitTop",
     currentAnimationType: [],
     animationPlaying: false,
   },

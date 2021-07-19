@@ -26,3 +26,11 @@ export const getAnimationPlaying = createSelector(
   [playerSelector],
   (state) => state.animationPlaying
 );
+export const getDirectionTypes = createSelector(
+  [playerSelector],
+  (state) => state.directionTypes
+);
+export const getCurrentDirectionType = createSelector(
+  [playerSelector],
+  (state) => state.currentDirectionType
+);

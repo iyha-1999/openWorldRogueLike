@@ -59,3 +59,12 @@ export const setAnimationPlaying = (animationPlaying) => {
     },
   };
 };
+export const SET_CURRENT_DIRECTION_TYPE = "SET_CURRENT_DIRECTION_TYPE";
+export const setCurrentDirectionType = (currentDirectionType) => {
+  return {
+    type: SET_CURRENT_DIRECTION_TYPE,
+    payload: {
+      currentDirectionType,
+    },
+  };
+};

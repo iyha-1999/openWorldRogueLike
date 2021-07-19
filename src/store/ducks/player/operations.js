@@ -53,3 +53,12 @@ export const setAnimationPlaying = (animationPlaying) => {
     );
   };
 };
+export const setCurrentDirectionType = (currentDirectionType) => {
+  return (dispatch) => {
+    dispatch(
+      Actions.setCurrentDirectionType({
+        currentDirectionType,
+      })
+    );
+  };
+};
