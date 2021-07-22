@@ -1,19 +1,12 @@
 import * as Actions from "./actions";
 
-export const setPlayerTextures = (Loader, Texture, spriteSheet) => {
+export const setPlayerTextures = (textures) => {
   return (dispatch) => {
-    const loader = new Loader();
-    loader.add(spriteSheet).load((_, resource) => {
-      const resourceFrames = resource[spriteSheet].data.frames;
-      const textures = Object.keys(resourceFrames).map((frame) =>
-        Texture.from(frame)
-      );
-      dispatch(
-        Actions.setPlayerTextures({
-          textures,
-        })
-      );
-    });
+    dispatch(
+      Actions.setPlayerTextures({
+        textures,
+      })
+    );
   };
 };
 export const setPlayerAnimationsTypes = (textures, animationTypes) => {

@@ -54,10 +54,10 @@ export const changeOnceMapChipFromXY = (x, y, mapChipId) => {
   };
 };
 
-export const setTextures = (textures) => {
+export const setMapTextures = (textures) => {
   return (dispatch) => {
     dispatch(
-      Actions.setTextures({
+      Actions.setMapTextures({
         textures,
       })
     );

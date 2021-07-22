@@ -11,10 +11,10 @@ import {
   generateInitialMap,
   generateArrayRenderMapChips,
   changeOnceMapChipFromXY,
-  setTextures,
+  setMapTextures,
 } from "../store/ducks/map/operations";
+import { useTextureLoader } from "./common/useTextureLoader";
 
-import { Texture, Loader } from "pixi.js";
 const spriteSheet = `${process.env.PUBLIC_URL}/assets/sprite/map/map.json`;
 
 const generateRandomIntFromSeed = (seedNumnber) => {
@@ -57,20 +57,18 @@ const useMap = () => {
 
   useEffect(() => {
     dispatch(generateInitialMap());
-    const loader = new Loader();
-    loader.add(spriteSheet).load((_, resource) => {
-      const resourceFrames = resource[spriteSheet].data.frames;
-      const textureLength = Object.keys(resourceFrames).length - 1;
-      dispatch(generateArrayRenderMapChips(textureLength, randomIntFromSeed));
-      dispatch(
-        changeOnceMapChipFromXY(playerInitPosition.x, playerInitPosition.y, 0)
-      );
-      const textures = Object.keys(resourceFrames).map((frame) =>
-        Texture.from(frame)
-      );
-      dispatch(setTextures(textures));
-    });
+    useTextureLoader(spriteSheet, (textures) =>
+      dispatch(setMapTextures(textures))
+    );
   }, []);
+
+  useEffect(() => {
+    const textureLength = Object.keys(textures).length - 1;
+    dispatch(generateArrayRenderMapChips(textureLength, randomIntFromSeed));
+    dispatch(
+      changeOnceMapChipFromXY(playerInitPosition.x, playerInitPosition.y, 0)
+    );
+  }, [textures]);
 
   return {
     onceMapChipSize,

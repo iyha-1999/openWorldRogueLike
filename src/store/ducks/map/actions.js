@@ -16,10 +16,10 @@ export const setRenderMapChips = (arrayRenderMapChips) => {
     },
   };
 };
-export const SET_TEXTURES = "SET_TEXTURE";
-export const setTextures = (textures) => {
+export const SET_MAP_TEXTURES = "SET_MAP_TEXTURES";
+export const setMapTextures = (textures) => {
   return {
-    type: SET_TEXTURES,
+    type: SET_MAP_TEXTURES,
     payload: {
       textures,
     },

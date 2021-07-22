@@ -20,13 +20,20 @@ const map = {
     rowMapTipCount: 17,
     initialArray: [[0]],
     arrayRenderMapChips: [[0]],
-    chunk: [{ x: 0, y: 0, map: [[0]] }],
+    chunk: [[0], [0], [0], [0], [0], [0]],
     playerInitPosition: {
       x: 8,
       y: 6,
     },
     textures: [],
     seed: 1,
+    seedValueComputedForSaveNeedsValues: {
+      x: 0,
+      y: 0,
+      z: 0,
+      w: 0,
+      t: 0,
+    },
   },
 };
 const player = {

@@ -13,7 +13,7 @@ export const mapReducers = (state = initialState.map, action) => {
         ...state,
         ...action.payload.arrayRenderMapChips,
       };
-    case Actions.SET_TEXTURES:
+    case Actions.SET_MAP_TEXTURES:
       return {
         ...state,
         ...action.payload.textures,
