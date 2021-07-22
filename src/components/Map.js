@@ -1,9 +1,9 @@
-import React from 'react';
-import useMap from '../hooks/useMap';
-import { Container, Sprite } from '@inlet/react-pixi';
+import React from "react";
+import useMap from "../hooks/useMap";
+import { Container, Sprite } from "@inlet/react-pixi";
 
 const Map = () => {
-  const { onceMapChipSize,randomArray,textures } = useMap();
+  const { onceMapChipSize, arrayRenderMapChips, textures } = useMap();
 
   if (textures.length === 0) {
     return null;
@@ -11,8 +11,11 @@ const Map = () => {
 
   return (
     <Container>
-      {randomArray.map((value, index) => {
+      {arrayRenderMapChips.map((value, index) => {
         const sprites = value.map((secondValue, secondIndex) => {
+          if (textures[secondValue] === undefined) {
+            return;
+          }
           return (
             <Sprite
               texture={textures[secondValue]}
@@ -22,7 +25,7 @@ const Map = () => {
           );
         });
         return [...sprites];
-      }) }
+      })}
     </Container>
   );
 };

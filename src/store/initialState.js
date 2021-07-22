@@ -19,7 +19,7 @@ const map = {
     columnMapChipCount: 13,
     rowMapTipCount: 17,
     initialArray: [[0]],
-    randomArray: [[0]],
+    arrayRenderMapChips: [[0]],
     chunk: [{ x: 0, y: 0, map: [[0]] }],
     playerInitPosition: {
       x: 8,
@@ -34,6 +34,10 @@ const player = {
     position: {
       x: 8 * 48,
       y: 6 * 48,
+    },
+    coordinate: {
+      x: 8,
+      y: 6,
     },
     textures: [],
     directionTypes: {

@@ -2,19 +2,19 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getOnceMapChipSize,
-  getRandomArray,
+  getArrayRenderMapChips,
   getPlayerInitPosition,
   getTextures,
-  getSeed
+  getSeed,
 } from "../store/ducks/map/selecors";
 import {
   generateInitialMap,
-  generateRandomMap,
+  generateArrayRenderMapChips,
   changeOnceMapChipFromXY,
-  setTextures
+  setTextures,
 } from "../store/ducks/map/operations";
 
-import { Texture,Loader } from 'pixi.js';
+import { Texture, Loader } from "pixi.js";
 const spriteSheet = `${process.env.PUBLIC_URL}/assets/sprite/map/map.json`;
 
 const generateRandomIntFromSeed = (seedNumnber) => {
@@ -40,7 +40,7 @@ const generateRandomIntFromSeed = (seedNumnber) => {
   };
 
   return {
-    nextInt
+    nextInt,
   };
 };
 
@@ -50,7 +50,7 @@ const useMap = () => {
 
   const playerInitPosition = getPlayerInitPosition(selector);
   const onceMapChipSize = getOnceMapChipSize(selector);
-  const randomArray = getRandomArray(selector);
+  const arrayRenderMapChips = getArrayRenderMapChips(selector);
   const textures = getTextures(selector);
   const seed = getSeed(selector);
   const randomIntFromSeed = generateRandomIntFromSeed(seed);
@@ -61,8 +61,10 @@ const useMap = () => {
     loader.add(spriteSheet).load((_, resource) => {
       const resourceFrames = resource[spriteSheet].data.frames;
       const textureLength = Object.keys(resourceFrames).length - 1;
-      dispatch(generateRandomMap(textureLength,randomIntFromSeed));
-      dispatch(changeOnceMapChipFromXY(playerInitPosition.x, playerInitPosition.y, 0));
+      dispatch(generateArrayRenderMapChips(textureLength, randomIntFromSeed));
+      dispatch(
+        changeOnceMapChipFromXY(playerInitPosition.x, playerInitPosition.y, 0)
+      );
       const textures = Object.keys(resourceFrames).map((frame) =>
         Texture.from(frame)
       );
@@ -72,9 +74,9 @@ const useMap = () => {
 
   return {
     onceMapChipSize,
-    randomArray,
-    textures
+    arrayRenderMapChips,
+    textures,
   };
-}
+};
 
 export default useMap;

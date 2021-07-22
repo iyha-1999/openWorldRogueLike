@@ -6,18 +6,18 @@ export const mapReducers = (state = initialState.map, action) => {
     case Actions.SET_INITIAL_MAP:
       return {
         ...state,
-        ...action.payload.initialArray
+        ...action.payload.initialArray,
       };
-    case Actions.SET_RAMDOM_MAP:
+    case Actions.SET_RENDER_MAP_CHIPS:
       return {
         ...state,
-        ...action.payload.randomArray
+        ...action.payload.arrayRenderMapChips,
       };
     case Actions.SET_TEXTURES:
-        return {
-          ...state,
-          ...action.payload.textures
-        };
+      return {
+        ...state,
+        ...action.payload.textures,
+      };
     default:
       return state;
   }

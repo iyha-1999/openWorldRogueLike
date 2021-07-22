@@ -54,7 +54,70 @@ const useGameLoop = () => {
   }, [selector.userInput.pressed.d]);
 
   useEffect(() => {
-    if (selector.userInput.pressed.Enter) console.log("Enter");
+    if (selector.userInput.pressed.Enter) {
+      const playerTopMapChipId =
+        selector.map.arrayRenderMapChips[selector.player.coordinate.y - 1][
+          selector.player.coordinate.x
+        ];
+      const playerBottomMapChipId =
+        selector.map.arrayRenderMapChips[selector.player.coordinate.y + 1][
+          selector.player.coordinate.x
+        ];
+      const playerLeftMapChipId =
+        selector.map.arrayRenderMapChips[selector.player.coordinate.y][
+          selector.player.coordinate.x - 1
+        ];
+      const playerRightMapChipId =
+        selector.map.arrayRenderMapChips[selector.player.coordinate.y][
+          selector.player.coordinate.x + 1
+        ];
+      switch (selector.player.currentDirectionType) {
+        case selector.player.directionTypes.top:
+          if (playerTopMapChipId != 0) {
+            dispatch(
+              changeOnceMapChipFromXY(
+                selector.player.coordinate.x,
+                selector.player.coordinate.y - 1,
+                0
+              )
+            );
+          }
+          break;
+        case selector.player.directionTypes.bottom:
+          if (playerBottomMapChipId != 0) {
+            dispatch(
+              changeOnceMapChipFromXY(
+                selector.player.coordinate.x,
+                selector.player.coordinate.y + 1,
+                0
+              )
+            );
+          }
+          break;
+        case selector.player.directionTypes.left:
+          if (playerLeftMapChipId != 0) {
+            dispatch(
+              changeOnceMapChipFromXY(
+                selector.player.coordinate.x - 1,
+                selector.player.coordinate.y,
+                0
+              )
+            );
+          }
+          break;
+        case selector.player.directionTypes.right:
+          if (playerRightMapChipId != 0) {
+            dispatch(
+              changeOnceMapChipFromXY(
+                selector.player.coordinate.x + 1,
+                selector.player.coordinate.y,
+                0
+              )
+            );
+          }
+          break;
+      }
+    }
   }, [selector.userInput.pressed.Enter]);
 };
 

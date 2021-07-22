@@ -6,9 +6,9 @@ export const getOnceMapChipSize = createSelector(
   [mapSelector],
   (state) => state.onceMapChipSize
 );
-export const getRandomArray = createSelector(
+export const getArrayRenderMapChips = createSelector(
   [mapSelector],
-  (state) => state.randomArray
+  (state) => state.arrayRenderMapChips
 );
 export const getPlayerInitPosition = createSelector(
   [mapSelector],
@@ -18,7 +18,4 @@ export const getTextures = createSelector(
   [mapSelector],
   (state) => state.textures
 );
-export const getSeed = createSelector(
-  [mapSelector],
-  (state) => state.seed
-);
+export const getSeed = createSelector([mapSelector], (state) => state.seed);
