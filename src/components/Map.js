@@ -21,6 +21,7 @@ const Map = () => {
               texture={textures[secondValue]}
               x={secondIndex * onceMapChipSize}
               y={index * onceMapChipSize}
+              key={secondIndex}
             />
           );
         });

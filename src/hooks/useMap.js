@@ -48,11 +48,20 @@ const useMap = () => {
   const selector = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const MINIMUM_SEED_NUM = 1;
+  const MAXIMUM_SEED_NUM = 100;
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+
   const playerInitPosition = getPlayerInitPosition(selector);
   const onceMapChipSize = getOnceMapChipSize(selector);
   const arrayRenderMapChips = getArrayRenderMapChips(selector);
   const textures = getTextures(selector);
-  const seed = getSeed(selector);
+  // const seed = getSeed(selector);
+  const seed = getRandomInt(MINIMUM_SEED_NUM, MAXIMUM_SEED_NUM);
   const randomIntFromSeed = generateRandomIntFromSeed(seed);
 
   useEffect(() => {

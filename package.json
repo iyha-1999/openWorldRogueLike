@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "./",
   "dependencies": {
     "@inlet/react-pixi": "6.6.2",
     "pixi.js": "6.0.4",
