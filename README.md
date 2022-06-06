@@ -48,8 +48,61 @@ React hooksの構成に慣れる
 
 ・キャラクタースプライトはキャラクター合成器で生成
 
-##振り返り
+## 振り返り
 
-・pixi.jsのコンポーネントの取り扱い
-react-pixiでは別のコンテキストでラップされているようなので
-Consumerでreduxのコンテキストの変更を感知し、stageの子コンポーネントに対して再度reduxのコンテキストでラップする
+### pixi.jsのコンポーネントで、reduxのstoreを読み込めない問題
+
+pixi.jsの文脈にreduxの文脈を挿入することで解決した
+
+`
+import React from "react";
+
+//react-pixiでは別のコンテキストでラップされているようなので
+//Consumerでreduxのコンテキストの変更を感知し、stageの子コンポーネントに対して再度reduxのコンテキストでラップする
+const ContextBridge = ({ render, Context, children }) => (
+  <Context.Consumer>
+    {value =>
+      render(<Context.Provider value={value}>{children}</Context.Provider>)
+    }
+  </Context.Consumer>
+);
+
+export default ContextBridge;
+
+`
+`
+export default function App() {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  return (
+    <>
+      <div className="App">
+        {/*renderPropで子コンポーネントを渡し、react-pixiコンポーネントにコンテキストを渡す*/}
+        <ContextBridge
+          Context={ReactReduxContext}
+          render={(children) => (
+            <Stage width={selector.stage.width} height={selector.stage.height}>
+              {children}
+            </Stage>
+          )}
+        >
+          <Map />
+          <Player />
+        </ContextBridge>
+      </div>
+      <GameLoop />
+      <UserInput />
+    </>
+  );
+}
+`
+
+## コードが冗長になる
+
+疎結合に書け、storeの安全性を担保する事はできるが、
+
+このままだとインゲームを作り込む段階で手続きが冗長になる
+
+解決手法として、インゲームはプロトタイプでreactで作り込み
+
+その後にreduxでUIなどをカバーしていく構成が良いと思った
