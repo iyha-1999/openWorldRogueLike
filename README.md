@@ -48,13 +48,12 @@ React hooksの構成に慣れる
 
 ・キャラクタースプライトはキャラクター合成器で生成
 
-##　想定工数
 
-・1ヶ月
+## 工数
 
-## かかった工数
+・予定　1ヶ月
 
-・2週間
+・実工数　3週間
 
 ## 振り返り
 
@@ -62,7 +61,7 @@ React hooksの構成に慣れる
 
 pixi.jsの文脈にreduxの文脈を挿入することで解決した
 
-`
+```
 import React from "react";
 
 //react-pixiでは別のコンテキストでラップされているようなので
@@ -77,8 +76,8 @@ const ContextBridge = ({ render, Context, children }) => (
 
 export default ContextBridge;
 
-`
-`
+```
+```
 export default function App() {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
@@ -103,7 +102,7 @@ export default function App() {
     </>
   );
 }
-`
+```
 
 ## コードが冗長になる
 
